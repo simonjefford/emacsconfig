@@ -16,3 +16,8 @@
 
 (bind "M-<"  'beginning-of-buffer)
 (bind "M->"  'end-of-buffer)
+
+(bind "C-s" 'isearch-forward-regexp)
+(bind "C-r" 'isearch-backward-regexp)
+(bind "C-M-s" 'isearch-forward)
+(bind "C-M-r" 'isearch-backward)
