@@ -21,3 +21,5 @@
 (bind "C-r" 'isearch-backward-regexp)
 (bind "C-M-s" 'isearch-forward)
 (bind "C-M-r" 'isearch-backward)
+
+(bind "C-w" 'backward-kill-word)
