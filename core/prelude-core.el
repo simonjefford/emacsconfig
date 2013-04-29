@@ -265,7 +265,7 @@ buffer is not visiting a file."
                (file-writable-p buffer-file-name))
     (unless (or (equal major-mode 'dired-mode)
                 (and (buffer-file-name)
-                     (file-writable-p buffer-file-name)))
+                     (file-writable-p buffer-file-name))))))
 
 (defun prelude-start-or-switch-to (function buffer-name)
   "Invoke FUNCTION if there is no buffer with BUFFER-NAME.
