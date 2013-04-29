@@ -262,13 +262,16 @@ buffer is not visiting a file."
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
-(defun prelude-switch-or-start (function buffer)
-  "If BUFFER is current, bury it, otherwise invoke FUNCTION."
-  (if (equal (buffer-name (current-buffer)) buffer)
-      (bury-buffer)
-    (if (get-buffer buffer)
-        (switch-to-buffer buffer)
-      (funcall function))))
+(defun prelude-start-or-switch-to (function buffer-name)
+  "Invoke FUNCTION if there is no buffer with BUFFER-NAME.
+Otherwise switch to the buffer named BUFFER-NAME.  Don't clobber
+the current buffer."
+  (if (not (get-buffer buffer-name))
+      (progn
+        (split-window-sensibly (selected-window))
+        (other-window 1)
+        (funcall function))
+    (switch-to-buffer-other-window buffer-name)))
 
 (defun prelude-insert-date ()
   "Insert a timestamp according to locale's date and time format."
@@ -285,7 +288,9 @@ buffer is not visiting a file."
 (defun prelude-recentf-ido-find-file ()
   "Find a recent file using ido."
   (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+  (let ((file (ido-completing-read "Choose recent file: "
+                                   (-map 'abbreviate-file-name recentf-list)
+                                   nil t)))
     (when file
       (find-file file))))
 
