@@ -8,6 +8,7 @@
                            (mode . less-css-mode)))
          ("go" (mode . go-mode))
          ("Javascript / Coffee" (or (mode . js2-mode)
+                                    (mode . js-mode)
                                     (mode . coffee-mode)))
          ("Docs" (or (mode . markdown-mode)
                      (mode . showoff-mode)))
