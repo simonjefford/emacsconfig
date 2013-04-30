@@ -23,6 +23,7 @@
       ido-use-virtual-buffers t
       ido-handle-duplicate-virtual-buffers 2
       ido-max-prospects 10)
+
 (server-start)
 
 (setq prelude-whitespace nil)
