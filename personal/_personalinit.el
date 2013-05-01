@@ -11,7 +11,7 @@
       (bind "M-x" 'smex-major-mode-commands))
   (message "install smex!"))
 
-(set-face-font 'default "-apple-Menlo-medium-normal-normal-*-11-*-*-*-m-0-iso10646-1")
+(set-face-font 'default "-apple-Menlo-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1")
 
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 (global-set-key (kbd "s-3") '(lambda () (interactive) (insert "#")))
