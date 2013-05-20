@@ -39,3 +39,4 @@
       '("" (:eval (if (buffer-file-name)
                       (abbreviate-file-name (buffer-file-name))
                     "%b"))))
+(add-hook 'before-save-hook 'gofmt-before-save)
