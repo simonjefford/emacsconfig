@@ -40,3 +40,7 @@
                       (abbreviate-file-name (buffer-file-name))
                     "%b"))))
 (add-hook 'before-save-hook 'gofmt-before-save)
+
+;; Keep these as they have been removed from prelude upstream
+(key-chord-define-global "kk" 'just-one-space)
+(key-chord-define-global "KK" 'delete-horizontal-space)
