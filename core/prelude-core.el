@@ -85,8 +85,10 @@ With a prefix ARG always prompt for command to use."
   "Insert an empty line above the current line.
 Position the cursor at it's beginning, according to the current mode."
   (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
   (forward-line -1)
-  (prelude-smart-open-line))
+  (funcall indent-line-function))
 
 (defun prelude-smart-open-line ()
   "Insert an empty line after the current line.
@@ -94,6 +96,11 @@ Position the cursor at its beginning, according to the current mode."
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
+
+(defun prelude-top-join-line ()
+  "Join the current line with the line beneath it."
+  (interactive)
+  (delete-indentation 1))
 
 (defun prelude-move-line-up ()
   "Move the current line up."
@@ -407,6 +414,7 @@ Doesn't mess with special buffers."
     (message "Updating Prelude...")
     (cd prelude-dir)
     (shell-command "git pull")
+    (prelude-recompile-init)
     (message "Update finished. Restart Emacs to complete the process.")))
 
 (provide 'prelude-core)
