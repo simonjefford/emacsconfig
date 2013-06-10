@@ -85,8 +85,10 @@ With a prefix ARG always prompt for command to use."
   "Insert an empty line above the current line.
 Position the cursor at it's beginning, according to the current mode."
   (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
   (forward-line -1)
-  (prelude-smart-open-line))
+  (funcall indent-line-function))
 
 (defun prelude-smart-open-line ()
   "Insert an empty line after the current line.
@@ -94,6 +96,11 @@ Position the cursor at its beginning, according to the current mode."
   (interactive)
   (move-end-of-line nil)
   (newline-and-indent))
+
+(defun prelude-top-join-line ()
+  "Join the current line with the line beneath it."
+  (interactive)
+  (delete-indentation 1))
 
 (defun prelude-move-line-up ()
   "Move the current line up."
@@ -286,11 +293,12 @@ buffer is not visiting a file."
 
 (defadvice ido-find-file (after find-file-sudo activate)
   "Find file as root if necessary."
-  (unless (and buffer-file-name
-               (file-writable-p buffer-file-name))
-    (unless (or (equal major-mode 'dired-mode)
-                (and (buffer-file-name)
-                     (file-writable-p buffer-file-name))))))
+  (unless (or (equal major-mode 'dired-mode)
+              (and (buffer-file-name)
+                   (not (file-exists-p (file-name-directory (buffer-file-name)))))
+              (and (buffer-file-name)
+                   (file-writable-p buffer-file-name)))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (defun prelude-start-or-switch-to (function buffer-name)
   "Invoke FUNCTION if there is no buffer with BUFFER-NAME.
@@ -407,6 +415,7 @@ Doesn't mess with special buffers."
     (message "Updating Prelude...")
     (cd prelude-dir)
     (shell-command "git pull")
+    (prelude-recompile-init)
     (message "Update finished. Restart Emacs to complete the process.")))
 
 (provide 'prelude-core)
