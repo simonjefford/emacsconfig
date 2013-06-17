@@ -31,8 +31,6 @@
 
 (server-start)
 
-(setq prelude-whitespace nil)
-
 (display-battery-mode)
 (display-time-mode)
 
