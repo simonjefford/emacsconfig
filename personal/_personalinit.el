@@ -43,3 +43,4 @@
 ;; Keep these as they have been removed from prelude upstream
 (key-chord-define-global "kk" 'just-one-space)
 (key-chord-define-global "KK" 'delete-horizontal-space)
+(setq prelude-flyspell nil)
