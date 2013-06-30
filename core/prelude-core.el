@@ -90,12 +90,17 @@ Position the cursor at it's beginning, according to the current mode."
   (forward-line -1)
   (indent-according-to-mode))
 
-(defun prelude-smart-open-line ()
+(defun prelude-smart-open-line (arg)
   "Insert an empty line after the current line.
-Position the cursor at its beginning, according to the current mode."
-  (interactive)
-  (move-end-of-line nil)
-  (newline-and-indent))
+Position the cursor at its beginning, according to the current mode.
+
+With a prefix ARG open line above the current line."
+  (interactive "P")
+  (if arg
+      (prelude-smart-open-line-above)
+    (progn
+      (move-end-of-line nil)
+      (newline-and-indent))))
 
 (defun prelude-top-join-line ()
   "Join the current line with the line beneath it."
@@ -316,12 +321,12 @@ the current buffer."
   (interactive)
   (insert (format-time-string "%c" (current-time))))
 
-(defun prelude-conditionally-enable-paredit-mode ()
-  "Enable `paredit-mode' in the minibuffer, during `eval-expression'."
-  (if (eq this-command 'eval-expression)
-      (paredit-mode 1)))
+;; (defun prelude-conditionally-enable-paredit-mode ()
+;;   "Enable `paredit-mode' in the minibuffer, during `eval-expression'."
+;;   (if (eq this-command 'eval-expression)
+;;       (paredit-mode 1)))
 
-(add-hook 'minibuffer-setup-hook 'prelude-conditionally-enable-paredit-mode)
+;; (add-hook 'minibuffer-setup-hook 'prelude-conditionally-enable-paredit-mode)
 
 (defun prelude-recentf-ido-find-file ()
   "Find a recent file using ido."
