@@ -6,6 +6,7 @@
          ("ruby/rails" (or (mode . ruby-mode)
                            (mode . haml-mode)
                            (mode . less-css-mode)))
+         ("css" (mode . css-mode))
          ("go" (mode . go-mode))
          ("Javascript / Coffee" (or (mode . js2-mode)
                                     (mode . js-mode)
