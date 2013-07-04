@@ -23,3 +23,5 @@
 (bind "C-M-r" 'isearch-backward)
 
 (bind "C-w" 'backward-kill-word)
+
+(define-key emacs-lisp-mode-map (kbd "C-k") 'sp-kill-sexp)
