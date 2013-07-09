@@ -40,6 +40,7 @@
      (defun prelude-clojure-mode-defaults ()
        (subword-mode +1)
        (clojure-test-mode +1)
+       (define-key clojure-mode-map (kbd "C-k") 'sp-kill-sexp)
        (run-hooks 'prelude-lisp-coding-hook))
 
      (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
