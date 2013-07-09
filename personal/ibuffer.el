@@ -7,6 +7,7 @@
                            (mode . haml-mode)
                            (mode . less-css-mode)))
          ("css" (mode . css-mode))
+         ("html" (mode . html-mode))
          ("go" (mode . go-mode))
          ("Javascript / Coffee" (or (mode . js2-mode)
                                     (mode . js-mode)
