@@ -45,4 +45,6 @@
 (key-chord-define-global "KK" 'delete-horizontal-space)
 (setq prelude-flyspell nil)
 
-(prelude-ensure-module-deps '(dash-at-point))
+(prelude-ensure-module-deps '(dash-at-point evil-nerd-commenter editorconfig))
+(evilnc-default-hotkeys)
+(require 'editorconfig)
