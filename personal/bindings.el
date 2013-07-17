@@ -25,3 +25,5 @@
 (bind "C-w" 'backward-kill-word)
 
 (define-key emacs-lisp-mode-map (kbd "C-k") 'sp-kill-sexp)
+(bind "M-t" 'projectile-find-file)
+(bind "s-F" 'projectile-ack)
