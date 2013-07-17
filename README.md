@@ -227,6 +227,7 @@ Keybinding         | Description
 <kbd>C-c e</kbd> | Eval a bit of Emacs Lisp code and replace it with its result.
 <kbd>C-c s</kbd> | Swap two active windows.
 <kbd>C-c d</kbd> | Duplicate the current line (or region).
+<kbd>C-c M-d</kbd> | Duplicate and comment the current line (or region).
 <kbd>C-c r</kbd> | Rename the currently visited file and buffer.
 <kbd>C-c t</kbd> | Open a terminal emulator (`ansi-term`).
 <kbd>C-c k</kbd> | Kill all open buffers except the one you're currently in.
@@ -428,6 +429,26 @@ you don't like that simply add this to your personal config:
 ```lisp
 (global-set-key [remap move-beginning-of-line]
                 'move-beginning-of-line)
+```
+
+### Poor ido matching performance on large datasets
+
+Prelude swaps the default `ido` flex matching with the more powerful
+[ido-flx](https://github.com/lewang/flx).
+
+The sorting algorithm `flx` uses is more complex, but yields better results.
+
+On slower machines, it may be necessary to lower `flx-ido-threshhold` to
+ensure a smooth experience.
+
+```lisp
+(setq flx-ido-threshhold 1000)
+```
+
+You can always disable the improved sorting algorithm all together like this:
+
+```lisp
+(flx-ido-mode -1)
 ```
 
 ### Windows compatibility
