@@ -132,8 +132,6 @@
 (define-key global-map [?\s-l] 'goto-line)
 (define-key global-map [?\s-m] 'magit-status)
 (define-key global-map [?\s-o] 'prelude-open-line-above)
-(define-key global-map [?\s-w] 'delete-frame)
-(define-key global-map [?\s-x] 'exchange-point-and-mark)
 (define-key global-map [?\s-p] 'projectile-switch-project)
 
 (provide 'prelude-global-keybindings)
