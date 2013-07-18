@@ -47,3 +47,8 @@
 (prelude-ensure-module-deps '(dash-at-point evil-nerd-commenter editorconfig))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
+
+(defun sj-next-line ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))

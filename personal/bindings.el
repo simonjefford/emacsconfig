@@ -27,3 +27,4 @@
 (define-key emacs-lisp-mode-map (kbd "C-k") 'sp-kill-sexp)
 (bind "M-t" 'projectile-find-file)
 (bind "s-F" 'projectile-ack)
+(bind "M-RET" 'sj-next-line)
