@@ -397,12 +397,29 @@ Doesn't mess with special buffers."
 
 (defvar prelude-tips
   '("Press <C-c o> to open a file with external program."
-    "Press <C-c p f> to navigate a project's files with ido."
+    "Press <C-c p f> or <s-f> to navigate a project's files with ido."
+    "Press <C-c p g> or <s-g> to run grep on a project."
+    "Press <C-c p s> or <s-p> to switch between projects."
+    "Press <C-=> or <s-x> to expand the selected region."
+    "Press <jj> quickly to jump to the beginning of a visible word."
+    "Press <jk> quickly to jump to a visible character."
+    "Press <jl> quickly to jump to a visible line."
     "Press <C-c h> to navigate a project in Helm."
     "Press <C-c g> to search in Google."
     "Press <C-c r> to rename the current buffer and file it's visiting."
     "Press <C-c t> to open a terminal in Emacs."
-    "Explore the Prelude menu to find out about some of Prelude extensions to Emacs."
+    "Press <C-c k> to kill all the buffers, but the active one."
+    "Press <C-x g> or <s-m> to run magit-status."
+    "Press <C-c D> to delete the current file and buffer."
+    "Press <C-c s> to swap two windows."
+    "Press <S-RET> or <M-o> to open a new beneath the current one."
+    "Press <s-o> to open a line above the current one."
+    "Press <C-c C-z> in a Elisp buffer to launch an interactive Elisp shell."
+    "Press <C-Backspace> to kill a line backwards."
+    "Press <C-S-Backspace> or <s-k> to kill the whole line."
+    "Press <f11> to toggle fullscreen mode."
+    "Press <f12> to toggle the menu bar."
+    "Explore the Tools->Prelude menu to find out about some of Prelude extensions to Emacs."
     "Access the official Emacs manual by pressing <C-h r>."
     "Visit WikEmacs at http://wikemacs.org to find out even more about Emacs."))
 
@@ -439,6 +456,79 @@ Doesn't mess with special buffers."
     (shell-command "git pull")
     (prelude-recompile-init)
     (message "Update finished. Restart Emacs to complete the process.")))
+
+(defun thing-at-point-goto-end-of-integer ()
+  "Go to end of integer at point."
+  (let ((inhibit-changing-match-data t))
+    ;; Skip over optional sign
+    (when (looking-at "[+-]")
+      (forward-char 1))
+    ;; Skip over digits
+    (skip-chars-forward "[[:digit:]]")
+    ;; Check for at least one digit
+    (unless (looking-back "[[:digit:]]")
+      (error "No integer here"))))
+(put 'integer 'beginning-op 'thing-at-point-goto-end-of-integer)
+
+(defun thing-at-point-goto-beginning-of-integer ()
+  "Go to end of integer at point."
+  (let ((inhibit-changing-match-data t))
+    ;; Skip backward over digits
+    (skip-chars-backward "[[:digit:]]")
+    ;; Check for digits and optional sign
+    (unless (looking-at "[+-]?[[:digit:]]")
+      (error "No integer here"))
+    ;; Skip backward over optional sign
+    (when (looking-back "[+-]")
+        (backward-char 1))))
+(put 'integer 'beginning-op 'thing-at-point-goto-beginning-of-integer)
+
+(defun thing-at-point-bounds-of-integer-at-point ()
+  "Get boundaries of integer at point."
+  (save-excursion
+    (let (beg end)
+      (thing-at-point-goto-beginning-of-integer)
+      (setq beg (point))
+      (thing-at-point-goto-end-of-integer)
+      (setq end (point))
+      (cons beg end))))
+(put 'integer 'bounds-of-thing-at-point 'thing-at-point-bounds-of-integer-at-point)
+
+(defun thing-at-point-integer-at-point ()
+  "Get integer at point."
+  (let ((bounds (bounds-of-thing-at-point 'integer)))
+    (string-to-number (buffer-substring (car bounds) (cdr bounds)))))
+(put 'integer 'thing-at-point 'thing-at-point-integer-at-point)
+
+(defun prelude-increment-integer-at-point (&optional inc)
+  "Increment integer at point by one.
+
+With numeric prefix arg INC, increment the integer by INC amount."
+  (interactive "p")
+  (let ((inc (or inc 1))
+        (n (thing-at-point 'integer))
+        (bounds (bounds-of-thing-at-point 'integer)))
+    (delete-region (car bounds) (cdr bounds))
+    (insert (int-to-string (+ n inc)))))
+
+(defun prelude-decrement-integer-at-point (&optional dec)
+  "Decrement integer at point by one.
+
+With numeric prefix arg DEC, decrement the integer by DEC amount."
+  (interactive "p")
+  (prelude-increment-integer-at-point (- (or dec 1))))
+
+;;; Emacs in OSX already has fullscreen support
+;;; Emacs has a similar built-in command in 24.4
+(defun prelude-fullscreen ()
+  "Make Emacs window fullscreen.
+
+This follows freedesktop standards, should work in X servers."
+  (interactive)
+  (if (eq window-system 'x)
+      (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                             '(2 "_NET_WM_STATE_FULLSCREEN" 0))
+    (error "Only X server is supported")))
 
 (provide 'prelude-core)
 ;;; prelude-core.el ends here

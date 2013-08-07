@@ -96,6 +96,9 @@
 ;; replace buffer-menu with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(unless (fboundp 'toggle-frame-fullscreen)
+  (global-set-key (kbd "<f11>") 'prelude-fullscreen))
+
 ;; toggle menu-bar visibility
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 
@@ -121,18 +124,6 @@
 (key-chord-define-global "uu" 'undo-tree-visualize)
 
 (key-chord-mode +1)
-
-;; make some use of the Super key
-(define-key global-map [?\s-d] 'projectile-find-dir)
-(define-key global-map [?\s-e] 'er/expand-region)
-(define-key global-map [?\s-f] 'projectile-find-file)
-(define-key global-map [?\s-g] 'projectile-grep)
-(define-key global-map [?\s-j] 'prelude-top-join-line)
-(define-key global-map [?\s-k] 'prelude-kill-whole-line)
-(define-key global-map [?\s-l] 'goto-line)
-(define-key global-map [?\s-m] 'magit-status)
-(define-key global-map [?\s-o] 'prelude-open-line-above)
-(define-key global-map [?\s-p] 'projectile-switch-project)
 
 (provide 'prelude-global-keybindings)
 

@@ -60,6 +60,21 @@
     (define-key map (kbd "C-c k") 'prelude-kill-other-buffers)
     (define-key map (kbd "C-c TAB") 'prelude-indent-rigidly-and-copy-to-clipboard)
     (define-key map (kbd "C-c h") 'helm-prelude)
+    (define-key map (kbd "C-c +") 'prelude-increment-integer-at-point)
+    (define-key map (kbd "C-c -") 'prelude-decrement-integer-at-point)
+    ;; make some use of the Super key
+    (define-key map [?\s-d] 'projectile-find-dir)
+    (define-key map [?\s-p] 'projectile-switch-project)
+    (define-key map [?\s-f] 'projectile-find-file)
+    (define-key map [?\s-g] 'projectile-grep)
+
+    (define-key map (kbd "s-r") 'prelude-recentf-ido-find-file)
+    (define-key map [?\s-x] 'er/expand-region)
+    (define-key map [?\s-j] 'prelude-top-join-line)
+    (define-key map [?\s-k] 'prelude-kill-whole-line)
+    (define-key map [?\s-m] 'magit-status)
+    (define-key map [?\s-o] 'prelude-smart-open-line-above)
+
     map)
   "Keymap for Prelude mode.")
 
@@ -86,7 +101,9 @@
                          ["Duplicate line or region" prelude-duplicate-current-line-or-region]
                          ["Indent rigidly and copy to clipboard" prelude-indent-rigidly-and-copy-to-clipboard]
                          ["Insert date" prelude-insert-date]
-                         ["Eval and replace" prelude-eval-and-replace])
+                         ["Eval and replace" prelude-eval-and-replace]
+                         ["Increment integer at point" prelude-increment-integer-at-point]
+                         ["Decrement integer at point" prelude-decrement-integer-at-point])
 
                         ("Navigation"
                          ["Helm" helm-prelude])
