@@ -53,3 +53,6 @@
   (interactive)
   (end-of-line)
   (newline-and-indent))
+
+(eval-after-load "go-mode"
+  '(add-hook 'before-save-hook 'gofmt-before-save))
