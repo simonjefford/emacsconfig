@@ -69,7 +69,6 @@
     (define-key map [?\s-g] 'projectile-grep)
 
     (define-key map (kbd "s-r") 'prelude-recentf-ido-find-file)
-    (define-key map [?\s-x] 'er/expand-region)
     (define-key map [?\s-j] 'prelude-top-join-line)
     (define-key map [?\s-k] 'prelude-kill-whole-line)
     (define-key map [?\s-m] 'magit-status)
