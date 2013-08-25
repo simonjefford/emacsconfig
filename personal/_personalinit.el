@@ -48,6 +48,8 @@
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
+(require 'rinari)
+(global-rinari-mode)
 
 (defun sj-next-line ()
   (interactive)
