@@ -218,10 +218,12 @@ Keybinding         | Description
 -------------------|------------------------------------------------------------
 <kbd>C-c o</kbd>   | Open the currently visited file with an external program.
 <kbd>C-c g</kbd>   | Search in Google for the thing under point (or an interactive query).
+<kbd>C-c G</kbd>   | Search in GitHub for the thing under point (or an interactive query).
+<kbd>C-c y</kbd>   | Search in YouTube for the thing under point (or an interactive query).
 <kbd>C-S-RET</kbd> or <kbd>M-o</kbd> | Insert an empty line above the current line and indent it properly
 <kbd>S-RET</kbd> or <kbd>M-O</kbd> | Insert an empty line and indent it properly (as in most IDEs).
-<kbd>C-S-up</kbd>  | Move the current line up.
-<kbd>C-S-down</kbd> | Move the current line down.
+<kbd>C-S-up</kbd> or <kbd>M-S-up</kbd> | Move the current line or region up.
+<kbd>C-S-down</kbd> or <kbd>M-S-down</kbd>| Move the current line or region down.
 <kbd>C-c n</kbd> | Fix indentation in buffer and strip whitespace.
 <kbd>C-c f</kbd> | Open recently visited file.
 <kbd>C-M-\\</kbd> | Indent region (if selected) or the entire buffer.
@@ -242,6 +244,19 @@ Keybinding         | Description
 <kbd>Super-k</kbd> | Kill whole line
 <kbd>Super-m</kbd> | Magit status
 <kbd>Super-o</kbd> | Open line above current line
+
+#### OSX modifier keys
+
+Prelude does not mess by default with the standard mapping of `Command` (to `Super`) and `Option` (to `Meta`).
+
+If you want to swap them add this to your personal config:
+
+```lisp
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
+```
+
+You can also temporarily swap them with `C-c w` (`M-x prelude-swap-meta-and-super`).
 
 #### Projectile
 
@@ -398,6 +413,19 @@ If you're not fond of spellchecking on the fly:
 ```
 
 ## Caveats & Pitfalls
+
+### Updating bundled packages
+
+Currently there is no Emacs Lisp API for updating packages, so you'll
+have to update manually the packages that came with Prelude from time
+to time.
+
+`M-x package-list-packages RET U x`
+
+Generally it's a good idea to do a package update before running
+`prelude-update`, since the latest Prelude code might depend on newer
+versions of the bundled packages than you would currently have
+installed.
 
 ### Problems with flyspell-mode
 

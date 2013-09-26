@@ -37,14 +37,16 @@
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c o") 'prelude-open-with)
     (define-key map (kbd "C-c g") 'prelude-google)
+    (define-key map (kbd "C-c G") 'prelude-github)
+    (define-key map (kbd "C-c y") 'prelude-youtube)
     ;; mimic popular IDEs binding, note that it doesn't work in a terminal session
     (define-key map [(shift return)] 'prelude-smart-open-line)
     (define-key map (kbd "M-o") 'prelude-smart-open-line)
     (define-key map [(control shift return)] 'prelude-smart-open-line-above)
-    (define-key map [(control shift up)]  'prelude-move-line-up)
-    (define-key map [(control shift down)]  'prelude-move-line-down)
-    (define-key map [(meta shift up)]  'prelude-move-line-up)
-    (define-key map [(meta shift down)]  'prelude-move-line-down)
+    (define-key map [(control shift up)]  'move-text-up)
+    (define-key map [(control shift down)]  'move-text-down)
+    (define-key map [(meta shift up)]  'move-text-up)
+    (define-key map [(meta shift down)]  'move-text-down)
     (define-key map (kbd "C-c n") 'prelude-cleanup-buffer)
     (define-key map (kbd "C-c f")  'prelude-recentf-ido-find-file)
     (define-key map (kbd "C-M-\\") 'prelude-indent-region-or-buffer)
@@ -69,10 +71,13 @@
     (define-key map [?\s-g] 'projectile-grep)
 
     (define-key map (kbd "s-r") 'prelude-recentf-ido-find-file)
-    (define-key map [?\s-j] 'prelude-top-join-line)
-    (define-key map [?\s-k] 'prelude-kill-whole-line)
-    (define-key map [?\s-m] 'magit-status)
-    (define-key map [?\s-o] 'prelude-smart-open-line-above)
+    (define-key map (kbd "s-j") 'prelude-top-join-line)
+    (define-key map (kbd "s-k") 'prelude-kill-whole-line)
+    (define-key map (kbd "s-m m") 'magit-status)
+    (define-key map (kbd "s-m l") 'magit-log)
+    (define-key map (kbd "s-m f") 'magit-file-log)
+    (define-key map (kbd "s-m b") 'magit-blame-mode)
+    (define-key map (kbd "s-o") 'prelude-smart-open-line-above)
 
     map)
   "Keymap for Prelude mode.")
@@ -116,7 +121,7 @@
                          ["View URL" prelude-view-url]))
                       "Search Files (Grep)...")
 
- (easy-menu-add-item nil '("Tools") '("--") "Search Files (Grep)..."))
+  (easy-menu-add-item nil '("Tools") '("--") "Search Files (Grep)..."))
 
 (defun prelude-mode-remove-menu ()
   "Remove `prelude-mode' menu entry."
