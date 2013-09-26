@@ -61,3 +61,5 @@
 
 (eval-after-load "go-mode"
   '(add-hook 'before-save-hook 'gofmt-before-save))
+
+(prelude-swap-meta-and-super)
