@@ -47,7 +47,8 @@
 (prelude-ensure-module-deps '(dash-at-point
                               evil-nerd-commenter
                               editorconfig
-                              handlebars-mode))
+                              handlebars-mode
+                              protobuf-mode))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
