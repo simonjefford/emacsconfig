@@ -17,6 +17,8 @@
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 (global-set-key (kbd "s-3") '(lambda () (interactive) (insert "#")))
 
+(bind "C-c M-f" 'toggle-frame-fullscreen)
+
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
 
@@ -48,7 +50,8 @@
                               evil-nerd-commenter
                               editorconfig
                               handlebars-mode
-                              protobuf-mode))
+                              protobuf-mode
+                              groovy-mode))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
