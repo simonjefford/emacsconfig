@@ -50,7 +50,8 @@
                               editorconfig
                               handlebars-mode
                               protobuf-mode
-                              groovy-mode))
+                              groovy-mode
+                              powerline))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
@@ -64,3 +65,9 @@
   '(add-hook 'before-save-hook 'gofmt-before-save))
 
 (prelude-swap-meta-and-super)
+
+(require 'powerline)
+(setq powerline-arrow-shape 'arrow)
+(setq powerline-color1 "grey22")
+(setq powerline-color2 "grey40")
+(powerline-default-theme)
