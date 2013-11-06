@@ -91,16 +91,17 @@ by Prelude.")
 (require 'prelude-editor)
 (require 'prelude-global-keybindings)
 
-;; OSX specific settings
-(when (eq system-type 'darwin)
-  (require 'prelude-osx))
-
 ;; the modules
 (when (file-exists-p prelude-modules-file)
   (load prelude-modules-file))
 
 ;; config changes made through the customize UI will be store here
 (setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
+(load custom-file)
+
+;; OSX specific settings
+(when (eq system-type 'darwin)
+  (require 'prelude-osx))
 
 ;; load the personal settings (this includes `custom-file')
 (when (file-exists-p prelude-personal-dir)
