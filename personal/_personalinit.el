@@ -19,6 +19,13 @@
 
 (bind "C-c M-f" 'toggle-frame-fullscreen)
 
+(defun save-and-recompile ()
+  (interactive)
+  (save-buffer)
+  (recompile))
+
+(bind "C-c C-t" 'save-and-recompile)
+
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
 
