@@ -15,3 +15,4 @@
 (require 'prelude-scss)
 (require 'prelude-xml)
 (require 'prelude-key-chord)
+(require 'prelude-helm)
