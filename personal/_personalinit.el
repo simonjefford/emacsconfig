@@ -53,12 +53,13 @@
 (setq prelude-flyspell nil)
 
 (prelude-ensure-module-deps '(dash-at-point
-                              evil-nerd-commenter
-                              editorconfig
-                              handlebars-mode
-                              protobuf-mode
-                              groovy-mode
-                              powerline))
+                               evil-nerd-commenter
+                               editorconfig
+                               handlebars-mode
+                               protobuf-mode
+                               groovy-mode
+                               powerline
+                               company))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
@@ -78,3 +79,17 @@
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 (powerline-default-theme)
+
+
+(add-to-list 'load-path (expand-file-name "gocode" prelude-vendor-dir))
+(require 'company)
+(require 'company-go)
+(setq company-tooltip-limit 20)                      ; bigger popup window
+(setq company-minimum-prefix-length 0)               ; autocomplete right after '.'
+(setq company-idle-delay .3)                         ; shorter delay before autocompletion popup
+(setq company-echo-delay 0)                          ; removes annoying blinking
+(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+
+(add-hook 'go-mode-hook (lambda ()
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
