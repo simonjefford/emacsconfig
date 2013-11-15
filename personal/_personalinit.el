@@ -59,7 +59,8 @@
                                protobuf-mode
                                groovy-mode
                                powerline
-                               company))
+                               company
+                               go-eldoc))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
@@ -93,3 +94,6 @@
 (add-hook 'go-mode-hook (lambda ()
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
+
+(require 'go-eldoc)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
