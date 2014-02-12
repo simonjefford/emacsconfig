@@ -7,7 +7,6 @@
 (require 'prelude-erlang)
 (require 'prelude-js)
 (require 'prelude-lisp)
-(require 'prelude-markdown)
 (require 'prelude-org)
 (require 'prelude-perl)
 (require 'prelude-ruby)
