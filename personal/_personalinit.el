@@ -99,3 +99,5 @@
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (setq ack-and-a-half-arguments '()) ;; otherwise it just crashes. *sigh*
+
+(setq projectile-switch-project-action 'projectile-vc)
