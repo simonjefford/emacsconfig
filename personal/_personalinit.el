@@ -52,15 +52,15 @@
 (key-chord-define-global "KK" 'delete-horizontal-space)
 (setq prelude-flyspell nil)
 
-(prelude-ensure-module-deps '(dash-at-point
-                               evil-nerd-commenter
-                               editorconfig
-                               handlebars-mode
-                               protobuf-mode
-                               groovy-mode
-                               powerline
-                               company
-                               go-eldoc))
+(prelude-require-packages '(dash-at-point
+                            evil-nerd-commenter
+                            editorconfig
+                            handlebars-mode
+                            protobuf-mode
+                            groovy-mode
+                            powerline
+                            company
+                            go-eldoc))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
