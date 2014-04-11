@@ -24,7 +24,12 @@
   (save-buffer)
   (recompile))
 
-(bind "C-c C-t" 'save-and-recompile)
+(defun projectile-save-and-recompile ()
+  (interactive)
+  (save-buffer)
+  (projectile-compile-project nil))
+
+(bind "C-c C-t" 'projectile-save-and-recompile)
 
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
   (when (fboundp mode) (funcall mode -1)))
