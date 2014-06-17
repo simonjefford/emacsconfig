@@ -20,3 +20,5 @@ projectile-bookmarks.eld
 session*
 .cask
 xkcd
+tramp
+/var/pcache
