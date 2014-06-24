@@ -108,3 +108,5 @@
 (setq projectile-switch-project-action 'projectile-vc)
 
 (setq auto-save-default nil)
+
+(add-to-list 'auto-mode-alist '("\\.hbs?\\'" . web-mode))

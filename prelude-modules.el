@@ -16,3 +16,4 @@
 (require 'prelude-key-chord)
 (require 'prelude-helm)
 (require 'prelude-ido)
+(require 'prelude-web)
