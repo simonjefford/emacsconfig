@@ -65,7 +65,8 @@
                             groovy-mode
                             powerline
                             company
-                            go-eldoc))
+                            go-eldoc
+                            writeroom-mode))
 (evilnc-default-hotkeys)
 (require 'editorconfig)
 (require 'handlebars-mode)
@@ -110,3 +111,5 @@
 (setq auto-save-default nil)
 
 (add-to-list 'auto-mode-alist '("\\.hbs?\\'" . web-mode))
+
+(setq writeroom-width 150)
