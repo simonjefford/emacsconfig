@@ -17,3 +17,5 @@
 (require 'prelude-helm)
 (require 'prelude-ido)
 (require 'prelude-web)
+(require 'prelude-go)
+(require 'prelude-scala)

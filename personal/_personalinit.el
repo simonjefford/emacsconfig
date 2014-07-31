@@ -81,11 +81,11 @@
 
 (prelude-swap-meta-and-super)
 
-(require 'powerline)
-(setq powerline-arrow-shape 'arrow)
-(setq powerline-color1 "grey22")
-(setq powerline-color2 "grey22")
-(powerline-default-theme)
+;; (require 'powerline)
+;; (setq powerline-arrow-shape 'arrow)
+;; (setq powerline-color1 "grey22")
+;; (setq powerline-color2 "grey22")
+;; (powerline-default-theme)
 
 
 (add-to-list 'load-path (expand-file-name "gocode" prelude-vendor-dir))
