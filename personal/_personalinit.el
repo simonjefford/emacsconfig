@@ -62,8 +62,6 @@
                             editorconfig
                             handlebars-mode
                             protobuf-mode
-                            groovy-mode
-                            powerline
                             company
                             go-eldoc
                             writeroom-mode))
@@ -80,13 +78,6 @@
   '(add-hook 'before-save-hook 'gofmt-before-save))
 
 (prelude-swap-meta-and-super)
-
-;; (require 'powerline)
-;; (setq powerline-arrow-shape 'arrow)
-;; (setq powerline-color1 "grey22")
-;; (setq powerline-color2 "grey22")
-;; (powerline-default-theme)
-
 
 (add-to-list 'load-path (expand-file-name "gocode" prelude-vendor-dir))
 (require 'company)
@@ -113,3 +104,14 @@
 (add-to-list 'auto-mode-alist '("\\.hbs?\\'" . web-mode))
 
 (setq writeroom-width 150)
+
+(let ((oracle (executable-find "oracle")))
+  (when oracle
+    (setq go-oracle-command oracle)
+    (autoload 'go-oracle-mode "oracle")
+    (add-hook 'go-mode-hook 'go-oracle-mode)))
+
+(defun sj-go-mode-hook ()
+  (local-set-key (kbd "M-.") 'godef-jump))
+
+(add-hook 'go-mode-hook 'sj-go-mode-hook)
