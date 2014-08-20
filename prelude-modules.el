@@ -19,3 +19,4 @@
 (require 'prelude-web)
 (require 'prelude-go)
 (require 'prelude-scala)
+(require 'prelude-haskell)
