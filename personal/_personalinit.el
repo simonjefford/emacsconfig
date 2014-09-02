@@ -122,7 +122,7 @@
         (let* ((path-from-godeps (with-temp-buffer
                                    (cd godeps)
                                    (call-process "godep" nil t nil "path")
-                                   (setenv "GOPATH" (s-chomp (buffer-string)))))
+                                   (s-chomp (buffer-string))))
                (final-path (if (stringp derived)
                                (s-concat path-from-godeps ":" derived)
                              path-from-godeps)))
