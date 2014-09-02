@@ -115,3 +115,27 @@
   (local-set-key (kbd "M-.") 'godef-jump))
 
 (add-hook 'go-mode-hook 'sj-go-mode-hook)
+
+(defun go-projectile-set-gopath-from-godep (derived)
+  (let ((godeps (locate-dominating-file (projectile-project-root) "Godeps")))
+    (if (stringp godeps)
+        (let* ((path-from-godeps (with-temp-buffer
+                                   (cd godeps)
+                                   (call-process "godep" nil t nil "path")
+                                   (setenv "GOPATH" (s-chomp (buffer-string)))))
+               (final-path (if (stringp derived)
+                               (s-concat path-from-godeps ":" derived)
+                             path-from-godeps)))
+          final-path))))
+
+(defun go-projectile-set-gopath ()
+  "Attempt to setenv GOPATH for the current project."
+  (interactive)
+  (let* ((derived (go-projectile-derive-gopath))
+         (path (or (go-projectile-make-gopath)
+                   (go-projectile-set-gopath-from-godep derived)
+                   derived)))
+    (when path
+      (message "derived GOPATH=%s" derived)
+      (message "setenv GOPATH=%s" path)
+      (setenv "GOPATH" path))))
