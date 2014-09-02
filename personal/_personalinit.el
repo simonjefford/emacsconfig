@@ -136,6 +136,5 @@
                    (go-projectile-set-gopath-from-godep derived)
                    derived)))
     (when path
-      (message "derived GOPATH=%s" derived)
       (message "setenv GOPATH=%s" path)
       (setenv "GOPATH" path))))
