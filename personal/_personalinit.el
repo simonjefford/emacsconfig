@@ -116,15 +116,15 @@
 
 (add-hook 'go-mode-hook 'sj-go-mode-hook)
 
-(defun go-projectile-set-gopath-from-godep (derived)
+(defun go-projectile-set-gopath-from-godep (current)
   (let ((godeps (locate-dominating-file (projectile-project-root) "Godeps")))
     (if (stringp godeps)
         (let* ((path-from-godeps (with-temp-buffer
                                    (cd godeps)
                                    (call-process "godep" nil t nil "path")
                                    (s-chomp (buffer-string))))
-               (final-path (if (stringp derived)
-                               (s-concat path-from-godeps ":" derived)
+               (final-path (if (stringp current)
+                               (s-concat path-from-godeps ":" current)
                              path-from-godeps)))
           final-path))))
 
