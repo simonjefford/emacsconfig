@@ -27,3 +27,4 @@
 (bind "M-t" 'projectile-find-file)
 (bind "s-F" 'projectile-ack)
 (bind "M-RET" 'sj-next-line)
+(bind "C-x RET" 'helm-M-x)

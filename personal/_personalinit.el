@@ -5,12 +5,6 @@
                    ,(if (listp fn)
                         fn)))
 
-(if (fboundp 'smex-initialize)
-    (progn
-      (bind "C-x C-m" 'smex)
-      (bind "M-x" 'smex-major-mode-commands))
-  (message "install smex!"))
-
 (if (display-graphic-p)
     (set-face-font 'default "-apple-Menlo-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"))
 
@@ -138,3 +132,5 @@
     (when path
       (message "setenv GOPATH=%s" path)
       (setenv "GOPATH" path))))
+
+(require 'prelude-helm-everywhere)
